@@ -1,12 +1,31 @@
+let nSlider; 
+
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(500, 500);
+  
+  nSlider = createSlider(1, 1000, 100, 10); 
+  nSlider.position(500,100); 
 }
 
+let gridSize = 16; 
+
 function draw() {
-  background(255);
-  fill(0);
-  rect(width / 2.5, height / 4, width / 20, height / 2);
-  rect(width - width / 2.5 - width / 20, height / 4, width / 20, height / 2);
-  rect(width / 2.5 + width / 20, height / 4 - width / 20, width - 2 * width / 2.5 - 2 * width / 20, width / 20);
-  rect(width / 2.5 + width / 20, height / 4 + height / 2, width - 2 * width / 2.5 - 2 * width / 20, width / 20);
+  background(0); 
+  stroke(255); 
+  let nscale = nSlider.value(); 
+
+  for(let y = 0; y<height; y+=gridSize) {
+    let rc = floor(random(0, 256));
+    for (let x =0; i<width; x+=gridSize) {
+      //let y = height * noise(i/nscale); 
+      let fc = 255 * noise(x/nscale, y/nscale); 
+      fill(fc); 
+      rect(x, y, gridSize, gridSize); 
+      //line(i, height/2, i, y); 
+  }
+}
+  // let x = frameCount % width; 
+  // let y = height * noise(x/nscale); 
+  // fill(255); 
+  // ellipse(x, y, 20, 20); 
 }
